@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits Index</title>
+</head>
+<body>
+    <h1>All Fruits</h1>
+
+    <ul>
+        <% fruits.forEach(fruit=> { %>
+            <li><%= fruit.name %></li>
+        <% }) %>
+    </ul>
+
+    <a href="/fruits/new">Add new Fruit</a>
+</body>
+</html>
