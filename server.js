@@ -2,6 +2,9 @@ const dotenv = require("dotenv")
 dotenv.config()
 const express = require("express")
 const mongoose = require("mongoose")
+const Fruit = require('./models/fruits.js')
+
+
 const app = express()
 const PORT = 3000
 
