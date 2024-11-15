@@ -6,7 +6,7 @@
     <title><%= fruit.name %></title>
 </head>
 <body>
-    <a href="/fruits/">Back to Fruits</a>
+    
 
     <h1><%= fruit.name %></h1>
 
@@ -15,5 +15,11 @@
         <% } else { %>
         <p>This fruit is not ready to eat!</p>
     <%}%>
+
+    <form action="/fruits/<%=fruit._id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete <%= fruit.name %></button>
+    </form>
+
+    <a href="/fruits/">Back to Fruits</a>
 </body>
 </html>

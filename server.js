@@ -2,13 +2,20 @@ const dotenv = require("dotenv")
 dotenv.config()
 const express = require("express")
 const mongoose = require("mongoose")
+const methodOverride = require("method-override")
+const morgan = require("morgan")
+//PORT
+const PORT = 3000
+//model
 const Fruit = require('./models/fruits.js')
 
 
 const app = express()
 app.use(express.urlencoded({ extended: false }))
+app.use(methodOverride("_method"))
+app.use(morgan("dev"))
 
-const PORT = 3000
+
 
 
 mongoose.connect(process.env.MONGODB_URI)
@@ -47,6 +54,12 @@ app.get("/fruits", async(req, res) => {
     const allFruits = await Fruit.find()
     //console.log(allFruits)
     res.render("fruits/index.ejs", { fruits: allFruits })
+})
+
+app.delete("/fruits/:fruitId", async(req, res) => {
+    await Fruit.findByIdAndDelete(req.params.fruitId)
+
+    res.redirect("/fruits")
 })
 
 
