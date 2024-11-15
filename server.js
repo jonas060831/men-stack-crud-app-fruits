@@ -6,6 +6,8 @@ const Fruit = require('./models/fruits.js')
 
 
 const app = express()
+app.use(express.urlencoded({ extended: false }))
+
 const PORT = 3000
 
 
@@ -21,6 +23,18 @@ app.get("/", async(req, res) => {
 
 app.get("/fruits/new", (req, res) => {
     res.render("fruits/new.ejs")
+})
+
+app.post("/fruits", async (req, res) => {
+    console.log(req.body)
+
+    if(req.body.isReadyToEat === "on") {
+        req.body.isReadyToEat = true;
+    } else {
+        req.body.isReadyToEat = false;
+    }
+    await Fruit.create(req.body)
+    res.redirect("/fruits/new")
 })
 
 
