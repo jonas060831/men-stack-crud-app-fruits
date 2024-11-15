@@ -6,14 +6,16 @@
     <title>Fruits Index</title>
 </head>
 <body>
+    <a href="/fruits/new">Add new Fruit</a>
+    
     <h1>All Fruits</h1>
 
     <ul>
         <% fruits.forEach(fruit=> { %>
-            <li><%= fruit.name %></li>
+            <li><a href="/fruits/<%= fruit._id %>"><%= fruit.name %></a></li>
         <% }) %>
     </ul>
 
-    <a href="/fruits/new">Add new Fruit</a>
+    
 </body>
 </html>
