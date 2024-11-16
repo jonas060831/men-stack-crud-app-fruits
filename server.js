@@ -30,6 +30,7 @@ app.get("/", async(req, res) => {
 
 
 app.get("/fruits/new", (req, res) => {
+
     res.render("fruits/new.ejs")
 })
 
@@ -54,6 +55,12 @@ app.get("/fruits", async(req, res) => {
     const allFruits = await Fruit.find()
     //console.log(allFruits)
     res.render("fruits/index.ejs", { fruits: allFruits })
+})
+
+app.get("/fruits/:fruitId/edit", async (req, res) => {
+    const foundFruit = await Fruit.findById(req.params.fruitId);
+    console.log(foundFruit)
+    res.render("fruits/edit.ejs", { fruit: foundFruit })
 })
 
 app.delete("/fruits/:fruitId", async(req, res) => {
